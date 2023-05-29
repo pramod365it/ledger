@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:ledger/config/config.dart';
 import 'package:ledger/models/models.dart';
+import 'package:ledger/pages/addparty.dart';
 import 'package:ledger/widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,6 +20,8 @@ class HomePage extends StatefulWidget {
 
   final String title;
 
+
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -33,9 +36,14 @@ class _HomePageState extends State<HomePage> {
   Future<void> _create([DocumentSnapshot]) async{
     await _users.add({"Name":"test Name added"});
   }
+
+
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    final Room room;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -100,8 +108,12 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        //onPressed: _incrementCounter,
-        onPressed: _create,
+       // onPressed: _create,
+        onPressed:(){
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AddParty())
+          );
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
@@ -194,3 +206,4 @@ class _TemperatureCondition extends StatelessWidget {
     );
   }
 }
+
